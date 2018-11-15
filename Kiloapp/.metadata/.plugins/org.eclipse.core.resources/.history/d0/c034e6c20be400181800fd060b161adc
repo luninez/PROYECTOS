@@ -1,0 +1,25 @@
+package com.salesianostriana.dam.kiloapp.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.salesianostriana.dam.kiloapp.model.Campaign;
+
+public interface CampaignRepository extends JpaRepository<Campaign, Long> {
+
+	public Campaign findByName(String name);
+	
+<<<<<<< HEAD
+//	@Query("SELECT * FROM CAMPAIGN c JOIN FETCH CAMPAIGNS_USERS j ON (c.ID = j.CAMPAIGN_ID) JOIN FETCH USER u ON (j.USERS_ID = u.ID")
+//	public List<Campaign> findCampaignOfOneUser(long id);
+	
+=======
+	/*
+		@Query("SELECT * FROM CAMPAIGN c JOIN FETCH CAMPAIGNS_USERS j ON (c.ID = j.CAMPAIGN_ID) JOIN FETCH USER u ON (j.USERS_ID = u.ID")
+		public List<Campaign> findCampaignOfOneUser(long id);
+	*/
+>>>>>>> fa9f07920a69c574ee039f0591bc6f718b0a9836
+	
+}

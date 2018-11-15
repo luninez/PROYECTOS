@@ -1,0 +1,21 @@
+package com.salesianostriana.dam.kiloapp.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.salesianostriana.dam.kiloapp.model.Contribution;
+
+public interface ContributionRepository extends JpaRepository<Contribution, Long> {
+	
+<<<<<<< HEAD
+//	@Query("SELECT * FROM CONTRIBUTION c JOIN FETCH CAMPAIGN g ON (c.ID = g.ID) JOIN FETCH CAMPAIGNS_USERS j ON (g.ID = j.ID) JOIN FETCH USER u ON (j.ID = u.ID)")
+//	public List<Contribution> findContributionOfOneUser(Long id);
+=======
+	/*
+	@Query("SELECT * FROM CONTRIBUTION c JOIN FETCH CAMPAIGN g ON (c.ID = g.ID_CAMPAIGN) JOIN FETCH CAMPAIGNS_USERS j ON (g.ID_CAMPAIGN = j.CAMPAIGN_ID) JOIN FETCH USER u ON (j.CAMPAIGN_ID = u.ID)")
+	public List<Contribution> findContributionOfOneUser(Long id);
+	*/
+>>>>>>> fa9f07920a69c574ee039f0591bc6f718b0a9836
+}
