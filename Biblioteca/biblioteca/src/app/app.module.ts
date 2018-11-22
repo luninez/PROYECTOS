@@ -1,26 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SessionComponent } from './session/session.component';
-import { DasboardComponent } from './dasboard/dasboard.component';
-import { LoginComponent } from './session/login/login.component';
-import { SignupComponent } from './session/signup/signup.component';
-import { HomeComponent } from './dasboard/home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SessionComponent,
-    DasboardComponent,
-    LoginComponent,
-    SignupComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

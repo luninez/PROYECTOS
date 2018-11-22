@@ -12,7 +12,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  declarations: [
+    LoginComponent, SignupComponent],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class SessionRoutingModule { }

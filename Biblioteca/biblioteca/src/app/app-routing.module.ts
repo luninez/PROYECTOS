@@ -2,18 +2,19 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'session/login', pathMatch: 'full'},
   {
-    path: 'session',
+    path: '',
     children: [{
-      path: '',
-      loadChildren: './session/session.module#SessionModule'
+      path: 'session',
+      loadChildren: './session/session-routing.module#SessionRoutingModule'
     }]
   },
   {
-    path: 'dasboard',
+    path: '',
     children: [{
       path: '',
-      loadChildren: './dasboard/dasboard.module#DasboardModule'
+      loadChildren: './dasboard/dasboard-routing.module#DashboardRoutingModule'
     }]
   }
 ];
