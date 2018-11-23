@@ -16,15 +16,14 @@ import { AuthService } from './Service/auth.service';
 export class SigninComponent implements OnInit {
 
   // creamos los atributos del componente(email y contraseña)
-  email: string;
-  password: string;
 
   public form: FormGroup;
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
     this.form = this.fb.group ( {
-      uname: [null , Validators.compose ( [ Validators.required ] )] , password: [null , Validators.compose ( [ Validators.required ] )]
+      email: [null , Validators.compose ( [ Validators.required ] )],
+      password: [null , Validators.compose ( [ Validators.required ] )]
     } );
   }
 
@@ -34,12 +33,13 @@ export class SigninComponent implements OnInit {
 
   // generamos el metodo encargado de almacenar los datos
   doLogin() {
-    const dto = new SigninDto(this.email, this.password);
-
+    const dto = new SigninDto(this.form.controls['email'].value, this.form.controls['password'].value);
+    console.log(dto);
     // aqui evaluaremos si el usuario es correcto
     this.authService.signin(dto).subscribe(signinResp => {
       console.log(signinResp);
       this.authService.setSigninData(signinResp);
+      this.router.navigate ( [ '/dashboard' ] );
 
     }, error => {
       console.log('Error en petición de login');

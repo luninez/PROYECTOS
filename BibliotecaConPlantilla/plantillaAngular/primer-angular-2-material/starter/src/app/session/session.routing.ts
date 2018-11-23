@@ -25,9 +25,6 @@ export const SessionRoutes: Routes = [
     }, {
       path: 'signin',
       component: SigninComponent
-    }, {
-      path: 'signup',
-      component: SignupComponent
     }]
   }
 ];
