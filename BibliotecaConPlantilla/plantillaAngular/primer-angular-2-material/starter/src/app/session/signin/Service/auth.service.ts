@@ -31,4 +31,8 @@ export class AuthService {
     localStorage.setItem('role', signinResponse.role);
   }
 
+  getToken(): string {
+    return localStorage.getItem('token');
+  }
+
 }
