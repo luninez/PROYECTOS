@@ -1,18 +1,20 @@
 import { Category } from '../models/category';
+import { Type } from '@angular/compiler/src/core';
 
 export class RecursoCreateDto {
-    id: number;
-    título: string;
+    title: string;
     autor: string;
-    date: Date;
-    type: string[];
-    category: Category;
+    anyo: number;
+    content: string;
+    typeId: number;
+    categoryId: number;
 
-    constructor(título: string, autor: string, date: Date, type: string[], category: Category) {
-        this.título = título;
+    constructor(title: string, autor: string, anyo: number, content: string, typeId: number, categoryId: number) {
+        this.title = title;
         this.autor = autor;
-        this.date = date;
-        this.type = type;
-        this.category = category;
+        this.anyo = anyo;
+        this.content = content;
+        this.typeId = typeId;
+        this.categoryId = categoryId;
     }
 }

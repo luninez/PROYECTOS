@@ -23,7 +23,13 @@ import { DialogoAddRecursoComponent } from './lista-recurso/dialogo-add-recurso/
     MatMenuModule,
     FlexLayoutModule
   ],
-  declarations: [ DashboardComponent, ListaRecursoComponent, DialogoNewRecursoComponent, DialogoEditRecursoComponent, DialogoAddRecursoComponent ]
+  declarations: [
+    DashboardComponent,
+    ListaRecursoComponent,
+    DialogoNewRecursoComponent,
+    DialogoEditRecursoComponent,
+    DialogoAddRecursoComponent
+  ]
 })
 
 export class DashboardModule {}

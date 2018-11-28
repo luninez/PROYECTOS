@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RecursoCreateDto } from './dto/recurso-create.dto';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RecursoCreateResponse } from './interfaces/recurso-create-response';
+import { RecursoCreateResponse } from './interfaces/recurso-create-response.interface';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../session/signin/Service/auth.service';
 import { Recurso } from './models/recurso';
@@ -36,4 +36,27 @@ export class RecursoService {
 
     return this.http.get<Recurso[]>(`${recursoUrl}/myrecursos`, requestOptions);
   }
+
+  getRecurso(idRecurso: number): Observable<Recurso> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.get<Recurso>(`http://www.miguelcamposrivera.com:3002/apibiblioteca/recurso/${idRecurso}`, requestOptions);
+  }
+
+  updateRecurso(recurso: Recurso): Observable<Recurso> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.put<Recurso>(`http://www.miguelcamposrivera.com:3002/apibiblioteca/recurso`, recurso, requestOptions);
+  }
+
 }

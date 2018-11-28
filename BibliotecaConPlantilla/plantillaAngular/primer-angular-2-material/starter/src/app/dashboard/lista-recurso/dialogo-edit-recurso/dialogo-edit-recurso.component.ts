@@ -4,30 +4,29 @@ import { Recurso } from '../models/recurso';
 import { RecursoService } from '../recurso.service';
 
 @Component({
-  selector: 'app-dialog-edit-recurso',
-  templateUrl: './dialog-edit-recurso.component.html',
-  styleUrls: ['./dialog-edit-recurso.component.css']
+  selector: 'app-dialogo-edit-recurso',
+  templateUrl: './dialogo-edit-recurso.component.html',
+  styleUrls: ['./dialogo-edit-recurso.component.scss']
 })
-export class DialogEditRecursoComponent implements OnInit {
+export class DialogoEditRecursoComponent implements OnInit {
   recurso: Recurso;
   colorSeleccionado: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-  private noteService: RecursoService,
-  public dialogRef: MatDialogRef<DialogEditRecursoComponent>) { }
+  private recursoService: RecursoService,
+  public dialogRef: MatDialogRef<DialogoEditRecursoComponent>) { }
 
   ngOnInit() {
-    // Rescatamos el idNota que le pasamos al diálogo en su apertura
-    const id = this.data.idNota;
+    // Rescatamos el idRecurso que le pasamos al diálogo en su apertura
+    const id = this.data.idRecurso;
 
-    this.recursoService.getRecurso(id).subscribe(nota => {
-      this.nota = nota;
-      this.colorSeleccionado = this.nota.color;
+    this.recursoService.getRecurso(id).subscribe(recurso => {
+      this.recurso = recurso;
     });
 
   }
-  saveNote() {
-    this.noteService.updateNota(this.nota).subscribe(nota => {
+  saveRecurso() {
+    this.recursoService.updateRecurso(this.recurso).subscribe(recurso => {
       this.dialogRef.close();
     });
   }
