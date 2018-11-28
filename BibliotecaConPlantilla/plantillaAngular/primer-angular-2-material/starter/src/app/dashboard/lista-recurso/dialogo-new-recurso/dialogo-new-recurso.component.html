@@ -1,6 +1,21 @@
 <div fxLayout="column" fFlexFill>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Título" [(ngModel)]="name">
+    <input matInput placeholder="Título" [(ngModel)]="title">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Título" [(ngModel)]="autor">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Título" [(ngModel)]="anyo">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Título" [(ngModel)]="content">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Título" [(ngModel)]="typeId">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Título" [(ngModel)]="categoryId">
   </mat-form-field>
   <br/>
   <button mat-raised-button color="primary" (click)="addRecurso()">Guardar Recurso</button>

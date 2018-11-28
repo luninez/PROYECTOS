@@ -8,6 +8,8 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutes } from './dashboard.routing';
 import { ListaRecursoComponent } from './lista-recurso/lista-recurso.component';
 import { DialogoNewRecursoComponent } from './lista-recurso/dialogo-new-recurso/dialogo-new-recurso.component';
+import { DialogoEditRecursoComponent } from './lista-recurso/dialogo-edit-recurso/dialogo-edit-recurso.component';
+import { DialogoAddRecursoComponent } from './lista-recurso/dialogo-add-recurso/dialogo-add-recurso.component';
 
 @NgModule({
   imports: [
@@ -21,7 +23,7 @@ import { DialogoNewRecursoComponent } from './lista-recurso/dialogo-new-recurso/
     MatMenuModule,
     FlexLayoutModule
   ],
-  declarations: [ DashboardComponent, ListaRecursoComponent, DialogoNewRecursoComponent ]
+  declarations: [ DashboardComponent, ListaRecursoComponent, DialogoNewRecursoComponent, DialogoEditRecursoComponent, DialogoAddRecursoComponent ]
 })
 
 export class DashboardModule {}
