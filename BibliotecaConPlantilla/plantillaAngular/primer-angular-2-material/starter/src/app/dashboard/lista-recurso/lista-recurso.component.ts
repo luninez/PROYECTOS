@@ -38,9 +38,9 @@ export class ListaRecursoComponent implements OnInit {
   }
 
   openDialogoNuevoRecurso() {
-    const dialogoNuevaNota = this.dialog.open(DialogoNewRecursoComponent);
+    const dialogoNewRecurso = this.dialog.open(DialogoNewRecursoComponent);
 
-    dialogoNuevaNota.afterClosed().subscribe(result => {
+    dialogoNewRecurso.afterClosed().subscribe(result => {
       this.getListaRecurso('Recurso creado');
     });
 

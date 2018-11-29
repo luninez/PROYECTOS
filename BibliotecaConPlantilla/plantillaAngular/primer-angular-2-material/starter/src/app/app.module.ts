@@ -47,6 +47,10 @@ import {
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+
+
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -101,11 +105,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FlexLayoutModule,
     BidiModule,
     AgmCoreModule.forRoot({apiKey: 'YOURAPIKEY'}),
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    MatDialogModule
   ],
   providers: [
     {
-      provide: PERFECT_SCROLLBAR_CONFIG,
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     }
   ],
