@@ -14,9 +14,6 @@ import { AuthService } from './Service/auth.service';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-
-  // creamos los atributos del componente(email y contraseña)
-
   public form: FormGroup;
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {}
 

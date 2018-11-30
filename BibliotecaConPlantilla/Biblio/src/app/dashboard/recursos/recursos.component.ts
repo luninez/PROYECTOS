@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 
+import { RecursoService } from './recurso.service';
+
 @Component({
   selector: 'app-recursos',
   templateUrl: './recursos.component.html',
   styleUrls: ['./recursos.component.scss']
 })
 export class RecursosComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['id', 'title', 'autor', 'anyo', 'content', 'type', 'category', 'acciones'];
+  dataRecursos;
 
-  constructor() { }
+  constructor(private recursoService: RecursoService) { }
 
   ngOnInit() {
-    dataSource = new MatTableDataSource(ELEMENT_DATA);
+    this.recursoService.getAllRecurso().subscribe(recursos => {
+      this.dataRecursos = new MatTableDataSource(recursos);
+    });
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataRecursos.filter = filterValue.trim().toLowerCase();
   }
-
-  
 
 }

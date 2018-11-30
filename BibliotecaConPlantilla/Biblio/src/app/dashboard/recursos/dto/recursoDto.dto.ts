@@ -1,7 +1,4 @@
-import { Category } from '../models/category';
-import { Type } from '@angular/compiler/src/core';
-
-export class RecursoCreateDto {
+export class RecursoDto {
     title: string;
     autor: string;
     anyo: number;

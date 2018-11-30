@@ -6,15 +6,14 @@ import { MatIconModule,
           MatButtonModule,
           MatListModule,
           MatProgressBarModule,
-          MatMenuModule } from '@angular/material';
+          MatMenuModule,
+          MatSortModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatTableModule} from '@angular/material/table';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatTableDataSource, MatSort } from '@angular/material';
-import { DataSource } from '@angular/cdk/table';
-
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutes } from './dashboard.routing';
@@ -40,7 +39,8 @@ import { DialogoDeleteRecursoComponent } from './lista-recurso/dialogo-delete-re
     FormsModule,
     MatInputModule,
     MatTableDataSource,
-    MatSort
+    MatSort,
+    MatSortModule
   ],
   declarations: [
     DashboardComponent,
@@ -52,6 +52,4 @@ import { DialogoDeleteRecursoComponent } from './lista-recurso/dialogo-delete-re
   ]
 })
 
-export class DashboardModule {
-  dataSource;
-}
+export class DashboardModule { }

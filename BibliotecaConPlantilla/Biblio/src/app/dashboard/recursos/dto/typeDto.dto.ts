@@ -1,4 +1,4 @@
-export class TypeCreateDto {
+export class TypeDto {
     id: number;
     name: string;
 

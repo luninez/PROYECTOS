@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SigninDto } from '../signin-dto';
 import { Observable } from 'rxjs';
 import { SigninResponse } from '../signin-response';
+import { environment } from 'src/environments/environment';
 
-const authUrl = `http://www.miguelcamposrivera.com:3002/apibiblioteca/auth/login`;
+const authUrl = `${environment.apiUrl}auth`;
 
 const requestOptions = {
   headers: new HttpHeaders({
@@ -28,7 +29,7 @@ export class AuthService {
 
     // RESPUESTA
     // En este caso el tipo de respuesta es 'SigninResponse'
-    return this.http.post<SigninResponse>(`${authUrl}`, signinDto, requestOptions);
+    return this.http.post<SigninResponse>(`${authUrl}/login`, signinDto, requestOptions);
   }
 
   setSigninData(signinResponse: SigninResponse) {

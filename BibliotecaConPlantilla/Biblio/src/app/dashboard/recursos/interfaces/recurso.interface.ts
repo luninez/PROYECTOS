@@ -1,7 +1,7 @@
 import { CategoryInterface } from './category.interface';
 import { TypeInterface } from './type.interface';
 
-export interface RecursoCreateResponse {
+export interface RecursoInterface {
     id: number;
     title: string;
     autor: string;
