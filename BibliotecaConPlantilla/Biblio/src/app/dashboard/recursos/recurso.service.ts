@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../../session/signin/Service/auth.service';
 import { environment } from 'src/environments/environment';
 import { RecursoInterface } from './interfaces/recurso.interface';
+import { RecursoDto } from './dto/recursoDto.dto';
 
 const recursoUrl = `${environment.apiUrl}recurso`;
 
@@ -24,6 +25,17 @@ export class RecursoService {
     };
 
     return this.http.get<RecursoInterface[]>(`${recursoUrl}/all`, requestOptions);
+  }
+
+  createRecurso(recursoCreateDto: RecursoDto): Observable<RecursoInterface> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.post<RecursoInterface>(`${recursoUrl}/create`, recursoCreateDto, requestOptions);
   }
 
 }

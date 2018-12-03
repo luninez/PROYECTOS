@@ -14,9 +14,7 @@ export class ListaRecursoComponent implements OnInit {
   displayedColumns: string[] = ['ID', 'titulo', 'autor', 'date', 'type', 'category', 'acciones'];
   dataSource: Recurso[];
 
-  constructor(private recursoService: RecursoService,
-    public snackBar: MatSnackBar,
-    public dialog: MatDialog) { }
+  constructor(private recursoService: RecursoService, public snackBar: MatSnackBar, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getListaRecurso('Listado de notas cargado');

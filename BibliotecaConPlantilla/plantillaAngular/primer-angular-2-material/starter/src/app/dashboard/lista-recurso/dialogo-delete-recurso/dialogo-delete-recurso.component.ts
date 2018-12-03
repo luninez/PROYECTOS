@@ -12,4 +12,6 @@ export class DialogoDeleteRecursoComponent implements OnInit {
   ngOnInit() {
   }
 
+  
+
 }

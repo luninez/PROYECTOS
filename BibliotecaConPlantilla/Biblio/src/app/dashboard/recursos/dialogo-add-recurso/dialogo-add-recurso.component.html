@@ -1,3 +1,27 @@
-<p>
-  dialogo-add-recurso works!
-</p>
+<div class="container">
+ <router-outlet></router-outlet>
+</div>
+
+<mat-form-field>
+  <input matInput placeholder="Titulo"[(ngModel)]="title" [formControl="form.controls['title']"]>
+</mat-form-field>
+<mat-form-field>
+  <input matInput placeholder="Autor"[(ngModel)]="autor" [formControl="form.controls['autor']"]>
+</mat-form-field>
+<mat-form-field>
+  <input matInput placeholder="Año"[(ngModel)]="anyo" [formControl="form.controls['anyo']"]>
+</mat-form-field>
+<mat-form-field>
+  <input matInput placeholder="URL"[(ngModel)]="url">
+</mat-form-field>
+<mat-form-field>
+  <input matInput placeholder="Contenido"[(ngModel)]="cotent">
+</mat-form-field>
+<mat-form-field>
+  <input matInput placeholder="Tipo"[(ngModel)]="type">
+</mat-form-field>
+<mat-form-field>
+  <input matInput placeholder="Categoria"[(ngModel)]="category">
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="addRecurso()">Guardar</button>
