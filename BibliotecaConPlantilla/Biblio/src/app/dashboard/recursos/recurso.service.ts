@@ -27,6 +27,17 @@ export class RecursoService {
     return this.http.get<RecursoInterface[]>(`${recursoUrl}/all`, requestOptions);
   }
 
+  getRecurso(idRecurso: number): Observable<RecursoInterface> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.get<RecursoInterface>(`${recursoUrl}/${idRecurso}`, requestOptions);
+  }
+
   createRecurso(recursoCreateDto: RecursoDto): Observable<RecursoInterface> {
     const requestOptions = {
       headers: new HttpHeaders({
@@ -36,6 +47,17 @@ export class RecursoService {
     };
 
     return this.http.post<RecursoInterface>(`${recursoUrl}/create`, recursoCreateDto, requestOptions);
+  }
+
+  updateRecurso(recurso: RecursoInterface): Observable<RecursoInterface> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.put<RecursoInterface>(`${recursoUrl}`, recurso, requestOptions);
   }
 
 }

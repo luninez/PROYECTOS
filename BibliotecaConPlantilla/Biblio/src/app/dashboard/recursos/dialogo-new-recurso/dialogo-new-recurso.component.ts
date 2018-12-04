@@ -13,6 +13,7 @@ export class DialogoNewRecursoComponent implements OnInit {
   title: string;
   autor: string;
   anyo: number;
+  url: string;
   content: string;
   typeId: number;
   categoryId: number;
@@ -24,7 +25,7 @@ export class DialogoNewRecursoComponent implements OnInit {
   }
 
   addRecurso() {
-    const recursoCreateDto = new RecursoDto(this.title, this.autor, this.anyo, this.content, this.typeId, this.categoryId);
+    const recursoCreateDto = new RecursoDto(this.title, this.autor, this.anyo, this.url, this.content, this.typeId, this.categoryId);
     this.recursoService.createRecurso(recursoCreateDto).subscribe(
       recurso => {
         this.dialogRef.close();

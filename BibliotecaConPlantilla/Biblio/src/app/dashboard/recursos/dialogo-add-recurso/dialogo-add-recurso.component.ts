@@ -1,10 +1,6 @@
 import { Component, OnInit, Type } from '@angular/core';
 import { RecursoService } from '../recurso.service';
 import { RecursoDto } from '../dto/recursoDto.dto';
-import { CategoryDto } from '../dto/categoryDto.dto';
-import { TypeDto } from '../dto/typeDto.dto';
-import { TypeInterface } from '../interfaces/type.interface';
-import { CategoryInterface } from '../interfaces/category.interface';
 
 @Component({
   selector: 'app-dialogo-add-recurso',
@@ -17,8 +13,8 @@ export class DialogoAddRecursoComponent implements OnInit {
   anyo: number;
   url: string;
   content: string;
-  type: TypeInterface;
-  category: CategoryInterface;
+  typeId: number;
+  categoryId: number;
 
   constructor(private recursoService: RecursoService) { }
 
@@ -26,7 +22,7 @@ export class DialogoAddRecursoComponent implements OnInit {
   }
 
   addRecurso() {
-    const recursoDto = new RecursoDto(this.title, this.autor, this.anyo, this.url, this.content, this.type, this.category);
+    const recursoDto = new RecursoDto(this.title, this.autor, this.anyo, this.url, this.content, this.typeId, this.categoryId);
     this.recursoService.createRecurso(recursoDto).subscribe(
       recurso => {
         console.log(recurso);

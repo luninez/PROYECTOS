@@ -1,3 +1,35 @@
-<p>
-  dialogo-edit-recurso works!
-</p>
+<div class="container">
+  <router-outlet></router-outlet>
+ </div>
+ 
+ <mat-form-field>
+   <input matInput placeholder="Titulo"[(ngModel)]="title" [formControl="form.controls['title']"]>
+ </mat-form-field>
+ <mat-form-field>
+   <input matInput placeholder="Autor"[(ngModel)]="autor" [formControl="form.controls['autor']"]>
+ </mat-form-field>
+ <mat-form-field>
+   <input matInput placeholder="Año"[(ngModel)]="anyo" [formControl="form.controls['anyo']"]>
+ </mat-form-field>
+ <mat-form-field>
+   <input matInput placeholder="URL"[(ngModel)]="url">
+ </mat-form-field>
+ <mat-form-field>
+   <input matInput placeholder="Contenido"[(ngModel)]="cotent">
+ </mat-form-field>
+ <mat-form-field>
+   <mat-select placeholder="Tipo" [(value)]="tipoSeleccionado">
+     <mat-option *ngFor="let type of types" [value]="type.id">
+       {{type.name}}
+     </mat-option>
+   </mat-select>
+ </mat-form-field>
+ <mat-form-field>
+   <mat-select placeholder="Categoria" [(value)]="categoriaSeleccionada">
+     <mat-option *ngFor="let category of categorys" [value]="category.id">
+       {{category.name}}
+     </mat-option>
+   </mat-select>
+ </mat-form-field>
+ 
+ <button mat-raised-button color="primary" (click)="addRecurso()">Guardar</button>

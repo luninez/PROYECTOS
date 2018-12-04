@@ -7,9 +7,10 @@ import { MatIconModule,
   MatListModule,
   MatProgressBarModule,
   MatMenuModule,
-  MatInputModule, 
+  MatInputModule,
   MatSnackBarModule,
-  MatDialogModule} from '@angular/material';
+  MatDialogModule,
+  MatSelectModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FormsModule } from '@angular/forms';
@@ -41,7 +42,8 @@ import { RecursosComponent } from './recursos/recursos.component';
     FormsModule,
     MatInputModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   declarations: [
     DashboardComponent,
