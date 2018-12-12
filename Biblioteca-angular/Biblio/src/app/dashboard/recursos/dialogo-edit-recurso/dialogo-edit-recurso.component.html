@@ -1,35 +1,43 @@
-<div class="container">
-  <router-outlet></router-outlet>
+<div fxLayout="column" fFlexFill>
+ 
+   <mat-form-field class="example-full-width">
+     <input matInput placeholder="Título" [(ngModel)]="recurso.title" [formControl]="form.controls['title']">
+   </mat-form-field>
+   <small *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched" class="mat-text-warn">El campo 'Título' es obligatorio.</small>
+   <br/>
+   <mat-form-field class="example-full-width">
+     <input matInput placeholder="Autor" [(ngModel)]="recurso.autor" [formControl]="form.controls['autor']">
+   </mat-form-field>
+   <small *ngIf="form.controls['autor'].hasError('required') && form.controls['autor'].touched" class="mat-text-warn">El campo 'Autor' es obligatorio.</small>
+   <br/>
+   <mat-form-field class="example-full-width">
+     <input matInput placeholder="Año" [(ngModel)]="recurso.anyo" [formControl]="form.controls['anyo']">
+   </mat-form-field>
+   <small *ngIf="form.controls['anyo'].hasError('required') && form.controls['anyo'].touched" class="mat-text-warn">El campo 'Año' es obligatorio.</small>
+   <br/>
+   <mat-form-field class="example-full-width">
+     <textarea matInput placeholder="Descripción" [(ngModel)]="recurso.content"></textarea>
+   </mat-form-field>
+   <br/> 
+     <mat-form-field>
+     <mat-select placeholder="Tipo" [(value)]="typeId">
+       <mat-option *ngFor="let tipo of tipos" [value]="recurso.tipo.id">
+         {{tipo.name}}
+       </mat-option>
+     </mat-select>
+   </mat-form-field>
+   <br/>
+   <mat-form-field>
+      <mat-option *ngFor="let categoria of categorias" [value]="recurso.categoria.id">
+        {{categoria.name}}
+      </mat-option>
+   </mat-form-field>
+   <br/>
+   <mat-form-field class="example-full-width">
+     <textarea matInput placeholder="URL" [(ngModel)]="url"></textarea>
+   </mat-form-field>
+   <br/> 
+   <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="saveRecurso()">Guardar</button>
+ 
  </div>
  
- <mat-form-field>
-   <input matInput placeholder="Titulo"[(ngModel)]="title" [formControl="form.controls['title']"]>
- </mat-form-field>
- <mat-form-field>
-   <input matInput placeholder="Autor"[(ngModel)]="autor" [formControl="form.controls['autor']"]>
- </mat-form-field>
- <mat-form-field>
-   <input matInput placeholder="Año"[(ngModel)]="anyo" [formControl="form.controls['anyo']"]>
- </mat-form-field>
- <mat-form-field>
-   <input matInput placeholder="URL"[(ngModel)]="url">
- </mat-form-field>
- <mat-form-field>
-   <input matInput placeholder="Contenido"[(ngModel)]="cotent">
- </mat-form-field>
- <mat-form-field>
-   <mat-select placeholder="Tipo" [(value)]="tipoSeleccionado">
-     <mat-option *ngFor="let type of types" [value]="type.id">
-       {{type.name}}
-     </mat-option>
-   </mat-select>
- </mat-form-field>
- <mat-form-field>
-   <mat-select placeholder="Categoria" [(value)]="categoriaSeleccionada">
-     <mat-option *ngFor="let category of categorys" [value]="category.id">
-       {{category.name}}
-     </mat-option>
-   </mat-select>
- </mat-form-field>
- 
- <button mat-raised-button color="primary" (click)="addRecurso()">Guardar</button>

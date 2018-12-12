@@ -13,7 +13,7 @@ import { MatIconModule,
   MatSelectModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 
@@ -40,6 +40,7 @@ import { RecursosComponent } from './recursos/recursos.component';
     MatTableModule,
     MatFormFieldModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatSnackBarModule,
     MatDialogModule,

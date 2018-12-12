@@ -20,10 +20,6 @@ export class DialogoDeleteRecursoComponent implements OnInit {
     return localStorage.getItem('eliminar') === 'eliminar';
   }
 
-  isAdmin() {
-    return this.authService.isAdmin();
-  }
-
   eliminarRecurso(element: RecursoDto) {
     this.snackBar.open(`Eliminando ${element.title}`, 'Cerrar', {
       duration: 3000,
