@@ -7,6 +7,7 @@ import { AuthService } from '../../session/signin/Service/auth.service';
 import { DialogoEditRecursoComponent } from './dialogo-edit-recurso/dialogo-edit-recurso.component';
 import { DialogoDeleteRecursoComponent } from './dialogo-delete-recurso/dialogo-delete-recurso.component';
 import { DialogoAddRecursoComponent } from './dialogo-add-recurso/dialogo-add-recurso.component';
+import { DialogoNewRecursoComponent } from './dialogo-new-recurso/dialogo-new-recurso.component';
 
 @Component({
   selector: 'app-recursos',
@@ -49,9 +50,9 @@ export class RecursosComponent implements OnInit {
   }
 
   openDialogoNuevoRecurso() {
-    const DialogoAddRecurso = this.dialog.open(DialogoAddRecursoComponent);
+    const dialogoNewRecurso = this.dialog.open(DialogoNewRecursoComponent);
 
-    DialogoAddRecurso.afterClosed().subscribe(result => {
+    dialogoNewRecurso.afterClosed().subscribe(result => {
       this.getListaRecurso('Recurso creado');
     });
 
