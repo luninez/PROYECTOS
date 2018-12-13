@@ -20,9 +20,9 @@
   </mat-form-field>
   <br/> 
     <mat-form-field>
-    <mat-select placeholder="Tipo" [(value)]="typeId">
-      <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
-        {{tipo.name}}
+    <mat-select placeholder="Tipo" [(value)]="tipoSeleccionado">
+      <mat-option *ngFor="let type of types" [value]="typeId">
+        {{typeId}}
       </mat-option>
     </mat-select>
   </mat-form-field>

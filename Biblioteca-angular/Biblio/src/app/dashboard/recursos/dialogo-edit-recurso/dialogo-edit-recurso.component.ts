@@ -20,13 +20,13 @@ export class DialogoEditRecursoComponent implements OnInit {
   public dialogRef: MatDialogRef<DialogoEditRecursoComponent>) { }
 
   ngOnInit() {
-    // Rescatamos el idNota que le pasamos al diálogo en su apertura
+    // Rescatamos el idRecurso que le pasamos al diálogo en su apertura
     const id = this.data.idRecurso;
 
     this.recursoService.getRecurso(id).subscribe(recurso => {
       this.recurso = recurso;
       this.tipoSeleccionado = this.recurso.type;
-      this.tipoSeleccionado = this.recurso.type;
+      this.categoriaSeleccionada = this.recurso.category;
     });
 
   }

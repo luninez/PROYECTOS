@@ -1,8 +1,9 @@
 <div fxLayout="column" fFlexFill>
 
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Escribe ELIMINAR" *ngIf="correcto()">
+    <input matInput placeholder="Eliminar" [(ngModel)]="title" [formControl]="form.controls['title']">
   </mat-form-field>
+  <small *ngIf="form.controls['title'].hasError('required') && form.controls['title'].touched" class="mat-text-warn">El campo 'Título' es obligatorio.</small>
   <br/>
   <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="eliminarRecurso(element)">Eliminar</button>
 

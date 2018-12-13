@@ -19,19 +19,21 @@
      <textarea matInput placeholder="Descripción" [(ngModel)]="recurso.content"></textarea>
    </mat-form-field>
    <br/> 
-     <mat-form-field>
-     <mat-select placeholder="Tipo" [(value)]="typeId">
-       <mat-option *ngFor="let tipo of tipos" [value]="recurso.tipo.id">
-         {{tipo.name}}
+    <mat-form-field>
+     <mat-select placeholder="Tipo" [(value)]="tipoSeleccionado">
+       <mat-option *ngFor="let tipo of tipos" [value]="recurso.tipyId">
+         {{typeId.name}}
        </mat-option>
      </mat-select>
    </mat-form-field>
    <br/>
    <mat-form-field>
-      <mat-option *ngFor="let categoria of categorias" [value]="recurso.categoria.id">
-        {{categoria.name}}
+    <mat-select placeholder="Categoria" [(value)]="categoryId">
+      <mat-option *ngFor="let categoria of categorias" [value]="recurso.categoryId">
+        {{categoryId.name}}
       </mat-option>
-   </mat-form-field>
+    </mat-select>
+  </mat-form-field>
    <br/>
    <mat-form-field class="example-full-width">
      <textarea matInput placeholder="URL" [(ngModel)]="url"></textarea>
