@@ -2,6 +2,11 @@ import { Component, OnInit, Type } from '@angular/core';
 import { RecursoService } from '../recurso.service';
 import { RecursoDto } from '../dto/recursoDto.dto';
 
+import { TypeDto } from '../dto/typeDto.dto';
+import { CategoryDto } from '../dto/categoryDto.dto';
+
+import { FormGroup, Validators, FormControl, FormBuilder  } from '@angular/forms';
+
 @Component({
   selector: 'app-dialogo-add-recurso',
   templateUrl: './dialogo-add-recurso.component.html',
@@ -16,9 +21,35 @@ export class DialogoAddRecursoComponent implements OnInit {
   typeId: number;
   categoryId: number;
 
-  constructor(private recursoService: RecursoService) { }
+  tipos: TypeDto[];
+  categorias: CategoryDto[];
+
+  public form: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private recursoService: RecursoService) { }
 
   ngOnInit() {
+    this.form = this.fb.group ( {
+      title: [null , Validators.compose ( [ Validators.required ] )],
+      autor: [null , Validators.compose ( [ Validators.required ] )],
+      anyo: [null , Validators.compose ( [ Validators.required ] )],
+    } );
+    this.getListaTipos();
+    this.getListaCategorias();
+  }
+
+  getListaTipos() {
+    this.recursoService.getAllTipos().subscribe(listaTipos => {
+      this.tipos = listaTipos;
+    });
+  }
+
+  getListaCategorias() {
+    this.recursoService.getAllCategorias().subscribe(listaCategorias => {
+      this.categorias = listaCategorias;
+    });
   }
 
   addRecurso() {
