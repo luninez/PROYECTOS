@@ -21,7 +21,7 @@ export class DialogoAddRecursoComponent implements OnInit {
   typeId: number;
   categoryId: number;
 
-  tipos: TypeDto[];
+  types: TypeDto[];
   categorias: CategoryDto[];
 
   public form: FormGroup;
@@ -42,7 +42,7 @@ export class DialogoAddRecursoComponent implements OnInit {
 
   getListaTipos() {
     this.recursoService.getAllTipos().subscribe(listaTipos => {
-      this.tipos = listaTipos;
+      this.types = listaTipos;
     });
   }
 

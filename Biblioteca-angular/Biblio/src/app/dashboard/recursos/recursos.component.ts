@@ -7,6 +7,7 @@ import { AuthService } from '../../session/signin/Service/auth.service';
 import { DialogoEditRecursoComponent } from './dialogo-edit-recurso/dialogo-edit-recurso.component';
 import { DialogoDeleteRecursoComponent } from './dialogo-delete-recurso/dialogo-delete-recurso.component';
 import { DialogoAddRecursoComponent } from './dialogo-add-recurso/dialogo-add-recurso.component';
+import { RecursoDto } from './dto/recursoDto.dto';
 
 @Component({
   selector: 'app-recursos',
@@ -57,11 +58,15 @@ export class RecursosComponent implements OnInit {
 
   }
 
-  openDialogoEliminarRecurso() {
-    const dialogoDeleteRecurso = this.dialog.open(DialogoDeleteRecursoComponent);
+  openDialogoEliminarRecurso(element: RecursoDto) {
+    const dialogoDeleteRecurso = this.dialog.open(DialogoDeleteRecursoComponent, {
+      data: { recurso: element },
+    });
 
     dialogoDeleteRecurso.afterClosed().subscribe(result => {
-      this.getListaRecurso('Recurso eliminado');
+      this.recursoService.eliminarRecurso(element).suscribe(res => {
+        this.getListaRecurso('Recurso eliminado');
+      });
     });
 
   }

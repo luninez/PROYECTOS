@@ -32,7 +32,7 @@
   <mat-form-field>
     <mat-select placeholder="Tipo" [(value)]="tipoSeleccionado">
       <mat-option *ngFor="let type of types" [value]="typeId">
-        {{typeId}}
+        {{type.name}}
       </mat-option>
     </mat-select>
   

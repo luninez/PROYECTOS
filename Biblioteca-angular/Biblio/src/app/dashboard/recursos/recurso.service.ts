@@ -86,4 +86,15 @@ export class RecursoService {
     return this.http.get<CategoryInterface[]>(`${categoriaUrl}/all`, requestOptions);
   }
 
+  eliminarRecurso() {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken()}`
+      })
+    };
+
+    return this.http.delete<RecursoInterface[]>(`${recursoUrl}/delete`, requestOptions);
+  }
+
 }
