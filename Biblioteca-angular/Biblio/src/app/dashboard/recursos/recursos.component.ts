@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { RecursoService } from './recurso.service';
+import { RecursosService } from './recursos.service';
 import { AuthService } from '../../session/signin/Service/auth.service';
 import { DialogoEditRecursoComponent } from './dialogo-edit-recurso/dialogo-edit-recurso.component';
 import { DialogoDeleteRecursoComponent } from './dialogo-delete-recurso/dialogo-delete-recurso.component';
 import { DialogoAddRecursoComponent } from './dialogo-add-recurso/dialogo-add-recurso.component';
-import { RecursoDto } from './dto/recursoDto.dto';
+import { RecursoDto } from '../dto/recursoDto.dto';
 
 @Component({
   selector: 'app-recursos',
@@ -19,7 +19,7 @@ export class RecursosComponent implements OnInit {
   dataRecursos;
 
   constructor(
-    private recursoService: RecursoService,
+    private recursoService: RecursosService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
     public authService: AuthService) { }
@@ -64,7 +64,7 @@ export class RecursosComponent implements OnInit {
     });
 
     dialogoDeleteRecurso.afterClosed().subscribe(result => {
-      this.recursoService.eliminarRecurso(element).suscribe(res => {
+      this.recursoService.eliminarRecurso().subscribe(res => {
         this.getListaRecurso('Recurso eliminado');
       });
     });

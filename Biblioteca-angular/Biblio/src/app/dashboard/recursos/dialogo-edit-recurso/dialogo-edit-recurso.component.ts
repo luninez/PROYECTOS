@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { RecursoInterface } from '../interfaces/recurso.interface';
-import { RecursoService } from '../recurso.service';
+import { RecursoInterface } from '../../interfaces/recurso.interface';
+import { RecursosService } from '../recursos.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-import { TypeInterface } from '../interfaces/type.interface';
-import { CategoryInterface } from '../interfaces/category.interface';
+import { TypeInterface } from '../../interfaces/type.interface';
+import { CategoryInterface } from '../../interfaces/category.interface';
 
 import { FormGroup, Validators, FormControl, FormBuilder  } from '@angular/forms';
 
@@ -23,7 +23,7 @@ export class DialogoEditRecursoComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private recursoService: RecursoService,
+    private recursoService: RecursosService,
     public dialogRef: MatDialogRef<DialogoEditRecursoComponent>,
     private fb: FormBuilder) { }
 

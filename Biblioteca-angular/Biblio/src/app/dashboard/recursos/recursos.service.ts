@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../session/signin/Service/auth.service';
 import { environment } from 'src/environments/environment';
-import { RecursoInterface } from './interfaces/recurso.interface';
-import { RecursoDto } from './dto/recursoDto.dto';
-import { TypeInterface } from './interfaces/type.interface';
-import { CategoryInterface } from './interfaces/category.interface';
+import { RecursoInterface } from '../interfaces/recurso.interface';
+import { RecursoDto } from '../dto/recursoDto.dto';
+import { TypeInterface } from '../interfaces/type.interface';
+import { CategoryInterface } from '../interfaces/category.interface';
 
 const recursoUrl = `${environment.apiUrl}recurso`;
 const tipoUrl = `${environment.apiUrl}tipo`;
@@ -16,7 +16,7 @@ const categoriaUrl = `${environment.apiUrl}categoria`;
   providedIn: 'root'
 })
 
-export class RecursoService {
+export class RecursosService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

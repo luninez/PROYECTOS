@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { RecursoDto } from '../dto/recursoDto.dto';
+import { RecursoDto } from '../../dto/recursoDto.dto';
 
 import { AuthService } from '../../../session/signin/Service/auth.service';
 import { MAT_DIALOG_DATA } from '@angular/material';

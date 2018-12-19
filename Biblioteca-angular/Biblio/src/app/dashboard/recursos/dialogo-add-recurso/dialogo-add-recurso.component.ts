@@ -1,9 +1,9 @@
 import { Component, OnInit, Type } from '@angular/core';
-import { RecursoService } from '../recurso.service';
-import { RecursoDto } from '../dto/recursoDto.dto';
+import { RecursosService } from '../recursos.service';
+import { RecursoDto } from '../../dto/recursoDto.dto';
 
-import { TypeDto } from '../dto/typeDto.dto';
-import { CategoryDto } from '../dto/categoryDto.dto';
+import { TypeDto } from '../../dto/typeDto.dto';
+import { CategoryDto } from '../../dto/categoryDto.dto';
 
 import { FormGroup, Validators, FormControl, FormBuilder  } from '@angular/forms';
 
@@ -28,7 +28,7 @@ export class DialogoAddRecursoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private recursoService: RecursoService) { }
+    private recursoService: RecursosService) { }
 
   ngOnInit() {
     this.form = this.fb.group ( {

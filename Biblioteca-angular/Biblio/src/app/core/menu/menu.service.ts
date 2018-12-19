@@ -34,6 +34,12 @@ const MENUITEMS = [
     icon: 'explore'
   },
   {
+    state: 'categoria',
+    name: 'CATEGORIA',
+    type: 'link',
+    icon: 'explore'
+  },
+  {
     state: 'http://primer.nyasha.me/docs',
     name: 'DOCS',
     type: 'extTabLink',

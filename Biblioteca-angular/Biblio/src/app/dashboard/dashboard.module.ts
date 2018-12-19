@@ -24,6 +24,10 @@ import { DialogoEditRecursoComponent } from '../dashboard/recursos/dialogo-edit-
 import { DialogoDeleteRecursoComponent } from '../dashboard/recursos/dialogo-delete-recurso/dialogo-delete-recurso.component';
 import { DialogoAddRecursoComponent } from '../dashboard/recursos/dialogo-add-recurso/dialogo-add-recurso.component';
 import { RecursosComponent } from './recursos/recursos.component';
+import { CategoriaComponent } from './categoria/categoria.component';
+import { DialogoAddCategoriaComponent } from './categoria/dialogo-add-categoria/dialogo-add-categoria.component';
+import { DialogoDeleteCategoriaComponent } from './categoria/dialogo-delete-categoria/dialogo-delete-categoria.component';
+import { DialogoEditCategoriaComponent } from './categoria/dialogo-edit-categoria/dialogo-edit-categoria.component';
 
 @NgModule({
   imports: [
@@ -50,7 +54,11 @@ import { RecursosComponent } from './recursos/recursos.component';
     DialogoEditRecursoComponent,
     DialogoDeleteRecursoComponent,
     DialogoAddRecursoComponent,
-    RecursosComponent
+    RecursosComponent,
+    CategoriaComponent,
+    DialogoAddCategoriaComponent,
+    DialogoDeleteCategoriaComponent,
+    DialogoEditCategoriaComponent
   ],
   entryComponents: [
     DialogoEditRecursoComponent,
