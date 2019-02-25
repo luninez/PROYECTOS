@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:showIn="navigation_view">
+
+  <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_buscar_piso"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="Buscar Piso" />
+    <item
+        android:id="@+id/nav_pisos_favoritos"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="Mis pisos favoritos" />
+    <item
+        android:id="@+id/nav_poner_anuncio"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="Poner un anuncio" />
+    <item
+        android:id="@+id/nav_mis_anuncios"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="Mis anuncios" />
+    <item
+        android:id="@+id/nav_mapa"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="Mapa" />
+  </group>
+
+</menu>
