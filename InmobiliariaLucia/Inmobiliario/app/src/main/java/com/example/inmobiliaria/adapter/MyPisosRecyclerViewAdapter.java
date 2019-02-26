@@ -58,14 +58,6 @@ public class MyPisosRecyclerViewAdapter extends RecyclerView.Adapter<MyPisosRecy
             }
         });
 
-        //Click email
-        holder.btnEmail.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                mListener.onEmailPisoClick(holder.mItem);
-            }
-        });
-
         //Click info
         holder.btnInfo.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -88,7 +80,6 @@ public class MyPisosRecyclerViewAdapter extends RecyclerView.Adapter<MyPisosRecy
         public final TextView mCuadrados;
         public final ImageView btnFav;
         public final ImageView btnCall;
-        public final ImageView btnEmail;
         public final ImageView btnInfo;
         public Piso mItem;
 
@@ -102,7 +93,6 @@ public class MyPisosRecyclerViewAdapter extends RecyclerView.Adapter<MyPisosRecy
 
             btnFav = view.findViewById(R.id.btn_favorite);
             btnCall = view.findViewById(R.id.btn_call);
-            btnEmail = view.findViewById(R.id.btn_mail);
             btnInfo = view.findViewById(R.id.btn_info);
         }
 

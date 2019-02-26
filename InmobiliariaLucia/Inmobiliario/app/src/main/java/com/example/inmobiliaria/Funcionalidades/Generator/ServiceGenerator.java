@@ -16,8 +16,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
 
-    private static final String BASE_URL = "";
-    private static final String MASTER_KEY = " ";
+    private static final String BASE_URL = "https://morning-chamber-30708.herokuapp.com/";
+    private static final String MASTER_KEY = "hzasFUC4txHXVHHWvjkR2R7UxQ6kzBlw";
 
     public static String jwToken = null;
 

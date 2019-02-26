@@ -15,8 +15,6 @@
             android:id="@+id/view2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_mail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,29 +34,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/btn_mail"
             app:layout_constraintStart_toEndOf="@+id/btn_favorite"
             app:srcCompat="@drawable/ic_call"
-            tools:layout_editor_absoluteY="267dp" />
-
-        <ImageButton
-            android:id="@+id/btn_mail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/btn_info"
-            app:layout_constraintStart_toEndOf="@+id/btn_call"
-            app:srcCompat="@drawable/ic_mail"
             tools:layout_editor_absoluteY="267dp" />
 
         <ImageButton
             android:id="@+id/btn_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="125dp"
+            android:layout_marginStart="188dp"
             android:layout_marginEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_mail"
+            app:layout_constraintStart_toEndOf="@+id/btn_call"
             app:srcCompat="@drawable/ic_info"
             tools:layout_editor_absoluteY="267dp" />
 
@@ -67,23 +54,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:text="TextView"
             app:layout_constraintEnd_toStartOf="@+id/piso_item_precio"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_mail" />
+            tools:layout_editor_absoluteY="326dp" />
 
         <TextView
             android:id="@+id/piso_item_precio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/piso_item_direccion"
-            app:layout_constraintTop_toBottomOf="@+id/btn_mail" />
+            tools:layout_editor_absoluteY="326dp" />
 
         <TextView
             android:id="@+id/piso_item_habitaciones"

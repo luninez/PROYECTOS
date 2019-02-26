@@ -8,8 +8,6 @@ public interface OnListPisosInteractionListener {
 
     public void onCallPisoClick(Piso p);
 
-    public void onEmailPisoClick(Piso p);
-
     public void onInfoPisoClick(Piso p);
 
 }
