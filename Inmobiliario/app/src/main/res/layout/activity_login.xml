@@ -47,13 +47,13 @@
         android:layout_marginEnd="16dp"
         android:text="¿Olvidaste tu contraseña?"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/btnGuardar"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
 
     <Button
-        android:id="@+id/btnGuardar"
+        android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -61,14 +61,14 @@
         android:layout_marginEnd="16dp"
         android:padding="10dp"
         android:text="Iniciar sesión"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegistro"
+        app:layout_constraintBottom_toTopOf="@+id/btnLoginRegistro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/olvidarPassword"
         tools:layout_width="0dp" />
 
     <Button
-        android:id="@+id/btnRegistro"
+        android:id="@+id/btnLoginRegistro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -81,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGuardar"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
         tools:layout_width="0dp" />
 
 </android.support.constraint.ConstraintLayout>
