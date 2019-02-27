@@ -10,4 +10,10 @@ public interface OnListPisosInteractionListener {
 
     public void onInfoPisoClick(Piso p);
 
+    public void onEditPisoClick(Piso p);
+
+    public void onAddPsioClick(Piso p);
+
+    public void onDeletePisoClick(Piso p);
+
 }

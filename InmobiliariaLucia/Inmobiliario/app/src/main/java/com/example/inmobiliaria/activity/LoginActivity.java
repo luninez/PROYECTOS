@@ -25,10 +25,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity  {
+public class LoginActivity extends AppCompatActivity {
 
     private EditText email, password;
-    private Button btnLogin, btnRegistro;
+    private Button btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,24 +41,20 @@ public class LoginActivity extends AppCompatActivity  {
 
         email = findViewById(R.id.emailLogin);
         password = findViewById(R.id.passwordLogin);
-        btnLogin = findViewById(R.id.btnLogin);
-        btnRegistro = findViewById(R.id.btnLoginRegistro);
 
-        doLogin();
-
-        btnRegistro.setOnClickListener(new View.OnClickListener() {
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegistroActivity.class));
+                doLogin();
             }
         });
-
     }
 
-    public void onLoginSuccess(Call<AuthoRegisterResponse> call, Response<AuthoRegisterResponse> response){
+    public void onLoginSuccess(Call<AuthoRegisterResponse> call, Response<AuthoRegisterResponse> response) {
         Util.setData(LoginActivity.this, response.body().getToken(), response.body().getUser());
 
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
         finish();
     }
 
@@ -66,7 +62,6 @@ public class LoginActivity extends AppCompatActivity  {
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
 
         builder.setIcon(R.drawable.ic_cancel);
-
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.dismiss();
@@ -81,51 +76,47 @@ public class LoginActivity extends AppCompatActivity  {
     }
 
     public void doLogin() {
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+
+        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.Theme_AppCompat_DayNight_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Comprobando...");
+        progressDialog.show();
+
+        String emailTxt = email.getText().toString();
+        String passwordTxt = password.getText().toString();
+
+        String credentials = Credentials.basic(emailTxt, passwordTxt);
+
+        AuthoRegisterService loginService = ServiceGenerator.createService(AuthoRegisterService.class);
+
+        Call<AuthoRegisterResponse> call = loginService.login(credentials);
+        call.enqueue(new Callback<AuthoRegisterResponse>() {
             @Override
-            public void onClick(View v) {
-                final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.Theme_AppCompat_DayNight_Dialog);
-                progressDialog.setIndeterminate(true);
-                progressDialog.setMessage("Comprobando...");
-                progressDialog.show();
-
-                String emailTxt = email.getText().toString();
-                String passwordTxt = password.getText().toString();
-
-                String credentials = Credentials.basic(emailTxt, passwordTxt);
-
-                AuthoRegisterService loginService = ServiceGenerator.createService(AuthoRegisterService.class);
-
-                Call<AuthoRegisterResponse> call = loginService.login(credentials);
-                call.enqueue(new Callback<AuthoRegisterResponse>() {
-                    @Override
-                    public void onResponse(final Call<AuthoRegisterResponse> call, final Response<AuthoRegisterResponse> response) {
-                        if(response.isSuccessful()){
-                            Runnable progressRunnable = new Runnable() {
-                                @Override
-                                public void run() {
-                                    progressDialog.cancel();
-                                    onLoginSuccess(call, response);
-                                }
-                            };
-
-                            Handler pdCanceller = new Handler();
-                            pdCanceller.postDelayed(progressRunnable, 2000);
-                        }else{
+            public void onResponse(final Call<AuthoRegisterResponse> call, final Response<AuthoRegisterResponse> response) {
+                if (response.isSuccessful()) {
+                    Runnable progressRunnable = new Runnable() {
+                        @Override
+                        public void run() {
                             progressDialog.cancel();
-                            onLoginFail();
+                            onLoginSuccess(call, response);
                         }
-                    }
+                    };
 
-                    @Override
-                    public void onFailure(Call<AuthoRegisterResponse> call, Throwable t) {
-                        progressDialog.dismiss();
-                        Toast.makeText(LoginActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    Handler pdCanceller = new Handler();
+                    pdCanceller.postDelayed(progressRunnable, 2000);
+                } else {
+                    progressDialog.cancel();
+                    onLoginFail();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<AuthoRegisterResponse> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(LoginActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }
 

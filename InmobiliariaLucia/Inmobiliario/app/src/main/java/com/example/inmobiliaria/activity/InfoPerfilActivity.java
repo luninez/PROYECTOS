@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.example.inmobiliaria.R;
 
-public class InfoPisoActivity extends AppCompatActivity {
+public class InfoPerfilActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info_piso);
+        setContentView(R.layout.activity_info_perfil);
     }
 }

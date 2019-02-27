@@ -26,8 +26,8 @@ import retrofit2.Response;
 
 public class RegistroActivity extends AppCompatActivity {
 
-    private EditText nombre, email, contrasenia, comprobacionContrasenia;
-    private Button btnRegistro;
+    private EditText nombre, email, contrasenia;
+    private Button btnRegistro, btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,25 +39,24 @@ public class RegistroActivity extends AppCompatActivity {
         nombre = findViewById(R.id.nombreRegistro);
         email = findViewById(R.id.emailRegistro);
         contrasenia = findViewById(R.id.passwordRegsitro);
-        comprobacionContrasenia = findViewById(R.id.comprobacionPasswordRegistro);
 
         btnRegistro = findViewById(R.id.btnRegistro);
+        btnLogin = findViewById(R.id.btnRegidtroLogin);
 
-        doRegister();
-
-        btnRegistro.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RegistroActivity.this, RegistroActivity.class));
+                startActivity(new Intent(RegistroActivity.this, LoginActivity.class));
             }
         });
 
+        doRegister();
     }
 
     public void onRegisterSuccess(Call<AuthoRegisterResponse> call, Response<AuthoRegisterResponse> response) {
         Util.setData(RegistroActivity.this, response.body().getToken(), response.body().getUser());
 
-        startActivity(new Intent(RegistroActivity.this, MainActivity.class));
+        startActivity(new Intent(RegistroActivity.this, DashboardActivity.class));
         finish();
     }
 
@@ -92,15 +91,9 @@ public class RegistroActivity extends AppCompatActivity {
                 String name = nombre.getText().toString().trim();
                 String correo = email.getText().toString().trim();
                 String password = contrasenia.getText().toString().trim();
-                String comprobacionPassword = comprobacionContrasenia.getText().toString().trim();
 
-                if(password.length() < 6){
-                    onRegisterFail(R.string.register_contraseña_no_segura);
-                }
-
-                if(!password.equals(comprobacionPassword)){
-                    onRegisterFail(R.string.register_contraseña_incorrecta);
-                }
+                Register usuario = new Register(name, correo, password);
+                crearUsuarioNuevo(usuario,progressDialog);
             }
         });
     }
@@ -118,7 +111,6 @@ public class RegistroActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     progressDialog.dismiss();
                     onRegisterSuccess(call, response);
-
                 } else {
                     progressDialog.dismiss();
                     onRegisterFail(R.string.error);

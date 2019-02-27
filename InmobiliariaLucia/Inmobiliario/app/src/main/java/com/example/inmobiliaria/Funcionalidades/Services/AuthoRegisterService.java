@@ -11,9 +11,9 @@ import com.example.inmobiliaria.models.Register;
 
 public interface AuthoRegisterService {
 
-    @POST("auth")
+    @POST("/auth")
     Call<AuthoRegisterResponse> login (@Header("Athorization") String authorizacion);
 
-    @POST
+    @POST("/users")
     Call<AuthoRegisterResponse> register(@Body Register registro);
 }
