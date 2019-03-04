@@ -1,4 +1,4 @@
-package com.example.inmobiliaria.Funcionalidades;
+package com.example.inmobiliaria.Retrofit;
 
 import android.content.Context;
 import android.content.SharedPreferences;

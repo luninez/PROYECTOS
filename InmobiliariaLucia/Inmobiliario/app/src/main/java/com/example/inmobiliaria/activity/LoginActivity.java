@@ -14,10 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.inmobiliaria.Funcionalidades.Generator.ServiceGenerator;
-import com.example.inmobiliaria.Funcionalidades.Responses.AuthoRegisterResponse;
-import com.example.inmobiliaria.Funcionalidades.Services.AuthoRegisterService;
-import com.example.inmobiliaria.Funcionalidades.Util;
+import com.example.inmobiliaria.Retrofit.Generator.ServiceGenerator;
+import com.example.inmobiliaria.Retrofit.Responses.AuthoRegisterResponse;
+import com.example.inmobiliaria.Retrofit.Services.AuthoRegisterService;
+import com.example.inmobiliaria.Retrofit.Util;
 import com.example.inmobiliaria.R;
 
 import okhttp3.Credentials;
@@ -28,12 +28,12 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText email, password;
-    private Button btnLogin;
+    private Button btnLogin, btnRegistrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro);
+        setContentView(R.layout.activity_login);
 
         getSupportActionBar().hide();
 
@@ -42,13 +42,17 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.emailLogin);
         password = findViewById(R.id.passwordLogin);
 
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin = findViewById(R.id.btnLogin);
+        btnRegistrar = findViewById(R.id.btnLoginRegistro);
+
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doLogin();
+                startActivity(new Intent(LoginActivity.this, RegistroActivity.class));
             }
         });
+
+        doLogin();
     }
 
     public void onLoginSuccess(Call<AuthoRegisterResponse> call, Response<AuthoRegisterResponse> response) {
@@ -77,43 +81,48 @@ public class LoginActivity extends AppCompatActivity {
 
     public void doLogin() {
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.Theme_AppCompat_DayNight_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Comprobando...");
-        progressDialog.show();
-
-        String emailTxt = email.getText().toString();
-        String passwordTxt = password.getText().toString();
-
-        String credentials = Credentials.basic(emailTxt, passwordTxt);
-
-        AuthoRegisterService loginService = ServiceGenerator.createService(AuthoRegisterService.class);
-
-        Call<AuthoRegisterResponse> call = loginService.login(credentials);
-        call.enqueue(new Callback<AuthoRegisterResponse>() {
+        btnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onResponse(final Call<AuthoRegisterResponse> call, final Response<AuthoRegisterResponse> response) {
-                if (response.isSuccessful()) {
-                    Runnable progressRunnable = new Runnable() {
-                        @Override
-                        public void run() {
+            public void onClick(View v){
+                final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.Theme_AppCompat_DayNight_Dialog);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Comprobando...");
+                progressDialog.show();
+
+                String emailTxt = email.getText().toString();
+                String passwordTxt = password.getText().toString();
+
+                String credentials = Credentials.basic(emailTxt, passwordTxt);
+
+                AuthoRegisterService loginService = ServiceGenerator.createService(AuthoRegisterService.class);
+
+                Call<AuthoRegisterResponse> call = loginService.login(credentials);
+                call.enqueue(new Callback<AuthoRegisterResponse>() {
+                    @Override
+                    public void onResponse(final Call<AuthoRegisterResponse> call, final Response<AuthoRegisterResponse> response) {
+                        if (response.isSuccessful()) {
+                            Runnable progressRunnable = new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressDialog.cancel();
+                                    onLoginSuccess(call, response);
+                                }
+                            };
+
+                            Handler pdCanceller = new Handler();
+                            pdCanceller.postDelayed(progressRunnable, 2000);
+                        } else {
                             progressDialog.cancel();
-                            onLoginSuccess(call, response);
+                            onLoginFail();
                         }
-                    };
+                    }
 
-                    Handler pdCanceller = new Handler();
-                    pdCanceller.postDelayed(progressRunnable, 2000);
-                } else {
-                    progressDialog.cancel();
-                    onLoginFail();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<AuthoRegisterResponse> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(LoginActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onFailure(Call<AuthoRegisterResponse> call, Throwable t) {
+                        progressDialog.dismiss();
+                        Toast.makeText(LoginActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 

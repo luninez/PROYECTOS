@@ -1,9 +1,12 @@
 package com.example.inmobiliaria.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class Piso {
+public class Property {
 
+    private User userId;
     private String title;
     private String description;
     private double price;
@@ -16,9 +19,13 @@ public class Piso {
     private String province;
     private String loc;
 
-    public Piso() { }
+    private List<String> favs = new ArrayList<>();
+    private List<String> photos = new ArrayList<>();
 
-    public Piso(String title, String description, double price, int rooms, double size, String categoryId, String address, String zipCode, String city, String province, String loc) {
+    public Property() { }
+
+    public Property(String title, String description, double price, int rooms, double size, String categoryId, String address, String zipCode, String city, String province, String loc) {
+        this.userId = userId;
         this.title = title;
         this.description = description;
         this.price = price;
@@ -30,6 +37,33 @@ public class Piso {
         this.city = city;
         this.province = province;
         this.loc = loc;
+        this.favs = favs;
+        this.photos = photos;
+    }
+
+    public Property(User userId, String title, String description, double price, int rooms, double size, String categoryId, String address, String zipCode, String city, String province, String loc, List<String> favs, List<String> photos) {
+        this.userId = userId;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.rooms = rooms;
+        this.size = size;
+        this.categoryId = categoryId;
+        this.address = address;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.province = province;
+        this.loc = loc;
+        this.favs = favs;
+        this.photos = photos;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {
@@ -120,43 +154,65 @@ public class Piso {
         this.loc = loc;
     }
 
+    public List<String> getFavs() {
+        return favs;
+    }
+
+    public void setFavs(List<String> favs) {
+        this.favs = favs;
+    }
+
+    public List<String> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<String> photos) {
+        this.photos = photos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Piso piso = (Piso) o;
-        return Double.compare(piso.price, price) == 0 &&
-                rooms == piso.rooms &&
-                Double.compare(piso.size, size) == 0 &&
-                Objects.equals(title, piso.title) &&
-                Objects.equals(description, piso.description) &&
-                Objects.equals(categoryId, piso.categoryId) &&
-                Objects.equals(address, piso.address) &&
-                Objects.equals(zipCode, piso.zipCode) &&
-                Objects.equals(city, piso.city) &&
-                Objects.equals(province, piso.province) &&
-                Objects.equals(loc, piso.loc);
+        if (!(o instanceof Property)) return false;
+        Property property = (Property) o;
+        return Double.compare(property.price, price) == 0 &&
+                rooms == property.rooms &&
+                Double.compare(property.size, size) == 0 &&
+                Objects.equals(userId, property.userId) &&
+                Objects.equals(title, property.title) &&
+                Objects.equals(description, property.description) &&
+                Objects.equals(categoryId, property.categoryId) &&
+                Objects.equals(address, property.address) &&
+                Objects.equals(zipCode, property.zipCode) &&
+                Objects.equals(city, property.city) &&
+                Objects.equals(province, property.province) &&
+                Objects.equals(loc, property.loc) &&
+                Objects.equals(favs, property.favs) &&
+                Objects.equals(photos, property.photos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, description, price, rooms, size, categoryId, address, zipCode, city, province, loc);
+        return Objects.hash(userId, title, description, price, rooms, size, categoryId, address, zipCode, city, province, loc, favs, photos);
     }
 
     @Override
     public String toString() {
-        return "Piso{" +
-                "title='" + title + '\'' +
+        return "Property{" +
+                "userId=" + userId +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", rooms=" + rooms +
                 ", size=" + size +
-                ", categoryId='" + categoryId + '\'' +
+                ", categoryId=" + categoryId +
                 ", address='" + address + '\'' +
                 ", zipCode='" + zipCode + '\'' +
                 ", city='" + city + '\'' +
                 ", province='" + province + '\'' +
                 ", loc='" + loc + '\'' +
+                ", favs=" + favs +
+                ", photos=" + photos +
                 '}';
     }
 }

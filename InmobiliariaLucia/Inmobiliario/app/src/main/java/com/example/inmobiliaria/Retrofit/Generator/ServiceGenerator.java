@@ -1,4 +1,4 @@
-package com.example.inmobiliaria.Funcionalidades.Generator;
+package com.example.inmobiliaria.Retrofit.Generator;
 
 import com.example.inmobiliaria.Enum.TipoAutenticacion;
 

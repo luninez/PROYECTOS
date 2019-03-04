@@ -1,6 +1,6 @@
-package com.example.inmobiliaria.Funcionalidades.Services;
+package com.example.inmobiliaria.Retrofit.Services;
 
-import com.example.inmobiliaria.Funcionalidades.Responses.UserResponse;
+import com.example.inmobiliaria.Retrofit.Responses.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

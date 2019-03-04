@@ -6,9 +6,9 @@ import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
-import com.example.inmobiliaria.Funcionalidades.Generator.ServiceGenerator;
-import com.example.inmobiliaria.Funcionalidades.Services.PisoService;
-import com.example.inmobiliaria.models.Piso;
+import com.example.inmobiliaria.Retrofit.Generator.ServiceGenerator;
+import com.example.inmobiliaria.Retrofit.Services.PropertyService;
+import com.example.inmobiliaria.models.Property;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,13 +19,13 @@ public class AddPisoViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public void addPiso(Piso piso, final DialogInterface dialog){
-        PisoService pisoService = ServiceGenerator.createService(PisoService.class);
-        Call<Piso> call = pisoService.addOne(piso);
+    public void addPiso(Property property, final DialogInterface dialog){
+        PropertyService propertyService = ServiceGenerator.createService(PropertyService.class);
+        Call<Property> call = propertyService.create(property);
 
-        call.enqueue(new Callback<Piso>() {
+        call.enqueue(new Callback<Property>() {
             @Override
-            public void onResponse(Call<Piso> call, Response<Piso> response) {
+            public void onResponse(Call<Property> call, Response<Property> response) {
                 if(response.isSuccessful()){
                     dialog.dismiss();
                 }else{
@@ -34,7 +34,7 @@ public class AddPisoViewModel extends AndroidViewModel {
             }
 
             @Override
-            public void onFailure(Call<Piso> call, Throwable t) {
+            public void onFailure(Call<Property> call, Throwable t) {
                 Toast.makeText(getApplication().getApplicationContext(), "Error de conexcion", Toast.LENGTH_SHORT).show();
             }
         });

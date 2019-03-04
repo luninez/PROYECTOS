@@ -1,5 +1,6 @@
 package com.example.inmobiliaria.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,44 +16,58 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.inmobiliaria.Enum.TipoAutenticacion;
-import com.example.inmobiliaria.Funcionalidades.Generator.ServiceGenerator;
-import com.example.inmobiliaria.Funcionalidades.Responses.UserResponse;
-import com.example.inmobiliaria.Funcionalidades.Services.PisoService;
-import com.example.inmobiliaria.Funcionalidades.Services.UserService;
-import com.example.inmobiliaria.Funcionalidades.Util;
+import com.example.inmobiliaria.Retrofit.Generator.ServiceGenerator;
+import com.example.inmobiliaria.Retrofit.Responses.ResponseContainer;
+import com.example.inmobiliaria.Retrofit.Responses.UserResponse;
+import com.example.inmobiliaria.Retrofit.Services.PropertyService;
+import com.example.inmobiliaria.Retrofit.Services.UserService;
+import com.example.inmobiliaria.Retrofit.Util;
 import com.example.inmobiliaria.R;
 import com.example.inmobiliaria.adapter.MyPisosRecyclerViewAdapter;
 import com.example.inmobiliaria.lisener.OnListPisosInteractionListener;
-import com.example.inmobiliaria.models.Piso;
+import com.example.inmobiliaria.models.Property;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PisosFragment extends Fragment {
+public class PropertyFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
     private OnListPisosInteractionListener mListener;
     private MyPisosRecyclerViewAdapter adapter;
     private Context ctx;
+    private List<Property> properties = new ArrayList<>();
+    Property property;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipe;
+    Map<String, String> options = new HashMap<>();
 
     private int tipoPeticion;
 
     private UserResponse userResponse;
 
-    public PisosFragment() { }
+
+
+    public PropertyFragment() { }
 
     public void setTipoPeticion(int tipoPeticion){
         this.tipoPeticion = tipoPeticion;
     }
 
-    public static PisosFragment newInstance(int columnCount) {
-        PisosFragment fragment = new PisosFragment();
+    @SuppressLint("ValidFragment")
+    public PropertyFragment(Map<String,String> options){
+        this.options = options;
+    }
+
+    public static PropertyFragment newInstance(int columnCount) {
+        PropertyFragment fragment = new PropertyFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -77,6 +92,9 @@ public class PisosFragment extends Fragment {
 
         if (view instanceof SwipeRefreshLayout) {
             Context context = view.getContext();
+
+            options.put("near", "-6.0071807999999995,37.3803677");
+            options.put("max_distance","1000000000000");
 
             recyclerView = view.findViewById(R.id.list_pisos);
             recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
@@ -118,14 +136,14 @@ public class PisosFragment extends Fragment {
     }
 
     public void cargarPisosFavoritos(final RecyclerView recyclerView) {
-        UserService userService = ServiceGenerator.createService(UserService.class, Util.getToken(this.getActivity()), TipoAutenticacion.JWT);
-        Call<UserResponse> call = userService.userById(Util.getUserId(this.getActivity()));
+        PropertyService propertyService = ServiceGenerator.createService(PropertyService.class, Util.getToken(this.getActivity()), TipoAutenticacion.JWT);
+        Call<ResponseContainer<Property>> call = propertyService.listProperties(options);
 
-        call.enqueue(new Callback<UserResponse>() {
+        call.enqueue(new Callback<ResponseContainer<Property>>() {
             @Override
-            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+            public void onResponse(Call<ResponseContainer<Property>> call, Response<ResponseContainer<Property>> response) {
                 if (response.isSuccessful()) {
-                    adapter = new MyPisosRecyclerViewAdapter(ctx, R.layout.fragment_pisos, response.body().getPisosFavoritos(), mListener);
+                    adapter = new MyPisosRecyclerViewAdapter(ctx, R.layout.fragment_pisos, response.body().getRows(), mListener);
                     recyclerView.setAdapter(adapter);
                 } else {
                     Toast.makeText(getContext(), "Error al obtener datos", Toast.LENGTH_LONG).show();
@@ -133,21 +151,21 @@ public class PisosFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
+            public void onFailure(Call<ResponseContainer<Property>> call, Throwable t) {
                 Toast.makeText(getContext(), "Error de conexión", Toast.LENGTH_LONG).show();
             }
         });
     }
 
     public void cargarMisPisosAnunciados(final RecyclerView recyclerView) {
-        UserService userService = ServiceGenerator.createService(UserService.class, Util.getToken(this.getActivity()), TipoAutenticacion.JWT);
-        Call<UserResponse> call = userService.userById(Util.getUserId(this.getActivity()));
+        PropertyService propertyService = ServiceGenerator.createService(PropertyService.class, Util.getToken(this.getActivity()), TipoAutenticacion.JWT);
+        Call<ResponseContainer<Property>> call = propertyService.listProperties(options);
 
-        call.enqueue(new Callback<UserResponse>() {
+        call.enqueue(new Callback<ResponseContainer<Property>>() {
             @Override
-            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+            public void onResponse(Call<ResponseContainer<Property>> call, Response<ResponseContainer<Property>> response) {
                 if (response.isSuccessful()) {
-                    adapter = new MyPisosRecyclerViewAdapter(ctx, R.layout.fragment_pisos, response.body().getPisosAnuncios(), mListener);
+                    adapter = new MyPisosRecyclerViewAdapter(ctx, R.layout.fragment_pisos, response.body().getRows(), mListener);
                     recyclerView.setAdapter(adapter);
                 } else {
                     Toast.makeText(getContext(), "Error al obtener datos", Toast.LENGTH_LONG).show();
@@ -155,21 +173,21 @@ public class PisosFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
+            public void onFailure(Call<ResponseContainer<Property>> call, Throwable t) {
                 Toast.makeText(getContext(), "Error de conexión", Toast.LENGTH_LONG).show();
             }
         });
     }
 
     public void cargarPisos(final RecyclerView recyclerView) {
-        PisoService pisoService = ServiceGenerator.createService(PisoService.class, Util.getToken(this.getActivity()), TipoAutenticacion.JWT);
-        Call<List<Piso>> call = pisoService.getPisos();
+        PropertyService propertyService = ServiceGenerator.createService(PropertyService.class);
+        Call<ResponseContainer<Property>> call = propertyService.listProperties(options);
 
-        call.enqueue(new Callback<List<Piso>>() {
+        call.enqueue(new Callback<ResponseContainer<Property>>() {
             @Override
-            public void onResponse(Call<List<Piso>> call, Response<List<Piso>> response) {
+            public void onResponse(Call<ResponseContainer<Property>> call, Response<ResponseContainer<Property>> response) {
                 if (response.isSuccessful()) {
-                    adapter = new MyPisosRecyclerViewAdapter(ctx, R.layout.fragment_pisos, response.body(), mListener);
+                    adapter = new MyPisosRecyclerViewAdapter(ctx, R.layout.fragment_pisos, response.body().getRows(), mListener);
                     recyclerView.setAdapter(adapter);
                 } else {
                     Toast.makeText(getContext(), "Error al obtener datos", Toast.LENGTH_LONG).show();
@@ -177,7 +195,7 @@ public class PisosFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<Piso>> call, Throwable t) {
+            public void onFailure(Call<ResponseContainer<Property>> call, Throwable t) {
                 Toast.makeText(getContext(), "Error de conexión", Toast.LENGTH_LONG).show();
             }
         });

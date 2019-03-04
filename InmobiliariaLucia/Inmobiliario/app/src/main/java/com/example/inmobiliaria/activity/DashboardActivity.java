@@ -23,12 +23,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.inmobiliaria.Funcionalidades.Util;
+import com.example.inmobiliaria.Retrofit.Util;
 import com.example.inmobiliaria.R;
 import com.example.inmobiliaria.dialog.AddPiso;
-import com.example.inmobiliaria.fragment.PisosFragment;
+import com.example.inmobiliaria.fragment.PropertyFragment;
 import com.example.inmobiliaria.lisener.OnListPisosInteractionListener;
-import com.example.inmobiliaria.models.Piso;
+import com.example.inmobiliaria.models.Property;
 
 public class DashboardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnListPisosInteractionListener {
@@ -53,7 +53,7 @@ public class DashboardActivity extends AppCompatActivity
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.contenedor, new PisosFragment(), "pisosFragment")
+                .add(R.id.contenedor, new PropertyFragment(), "pisosFragment")
                 .commit();
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -84,10 +84,9 @@ public class DashboardActivity extends AppCompatActivity
         Menu items = navigationView.getMenu();
         if (Util.getToken(DashboardActivity.this) == null) {
             items.findItem(R.id.nav_pisos_favoritos).setVisible(false);
-            items.findItem(R.id.nav_poner_anuncio).setVisible(false);
             items.findItem(R.id.nav_mis_anuncios).setVisible(false);
             items.findItem(R.id.nav_logout).setVisible(false);
-            items.findItem(R.id.nav_perfil);
+            items.findItem(R.id.nav_perfil).setVisible(false);
         } else {
             items.findItem(R.id.nav_login).setVisible(false);
         }
@@ -155,31 +154,19 @@ public class DashboardActivity extends AppCompatActivity
         int id = item.getItemId();
         f = null;
 
-        if (id == R.id.nav_login) {
-
-            fab.hide();
-            toolbar.setTitle("Iniciar Sesión");
-            startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
-            finish();
-
-        } else if (id == R.id.nav_perfil) {
+        if (id == R.id.nav_perfil) {
 
             fab.hide();
             toolbar.setTitle("Perfil");
             startActivity(new Intent(DashboardActivity.this, InfoPerfilActivity.class));
             finish();
 
-        } else if (id == R.id.nav_poner_anuncio) {
+        } else if (id == R.id.nav_login) {
 
             fab.hide();
-            toolbar.setTitle("Publicar anuncio");
-            Toast.makeText(this, "AUN NO", Toast.LENGTH_SHORT).show();
-
-        } else if (id == R.id.nav_mapa) {
-
-            fab.hide();
-            toolbar.setTitle("Mapa");
-            Toast.makeText(this, "AUN NO", Toast.LENGTH_SHORT).show();
+            toolbar.setTitle("Iniciar Sesión");
+            startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
+            finish();
 
         } else if (id == R.id.nav_logout) {
             Util.clearSharedPreferences(DashboardActivity.this);
@@ -189,8 +176,8 @@ public class DashboardActivity extends AppCompatActivity
             finish();
 
         } else {
-            f = new PisosFragment();
-            ((PisosFragment) f).setTipoPeticion(id);
+            f = new PropertyFragment();
+            ((PropertyFragment) f).setTipoPeticion(id);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -207,32 +194,44 @@ public class DashboardActivity extends AppCompatActivity
     //METODOS ONCLICK LISTA DE PISOS
 
     @Override
-    public void onFavoritePisoClick(Piso p) {
+    public void onFavoritePisoClick(Property p) {
 
     }
 
     @Override
-    public void onCallPisoClick(Piso p) {
+    public void onCallPisoClick(Property p) {
 
     }
 
     @Override
-    public void onInfoPisoClick(Piso p) {
+    public void onInfoPisoClick(Property p) {
 
     }
 
     @Override
-    public void onEditPisoClick(Piso p) {
+    public void onEditPisoClick(Property p) {
 
     }
 
     @Override
-    public void onAddPsioClick(Piso p) {
-
+    public void onAddPsioClick(Property p) {
+        AddPiso f = AddPiso.newInstance().newInstance();
+        f.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Fragment currentFragment = getSupportFragmentManager().findFragmentByTag("mainFragment");
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.detach(currentFragment);
+                fragmentTransaction.attach(currentFragment);
+                fragmentTransaction.commit();
+            }
+        });
+        FragmentManager fm = getSupportFragmentManager();
+        f.show(fm, "AñadirPersona");
     }
 
     @Override
-    public void onDeletePisoClick(Piso p) {
+    public void onDeletePisoClick(Property p) {
 
     }
 }

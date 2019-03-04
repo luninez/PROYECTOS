@@ -6,31 +6,23 @@
   <group android:checkableBehavior="single">
     <item
         android:id="@+id/nav_perfil"
-        android:icon="@drawable/ic_person_black_24dp"
+        android:icon="@drawable/ic_person"
         android:title="Mi perfil" />
     <item
         android:id="@+id/nav_buscar_piso"
-        android:icon="@drawable/ic_search_black_24dp"
+        android:icon="@drawable/ic_search"
         android:title="Buscar Piso" />
     <item
         android:id="@+id/nav_pisos_favoritos"
-        android:icon="@drawable/ic_favorite_black_24dp"
+        android:icon="@drawable/ic_favorite_rose"
         android:title="Mis pisos favoritos" />
     <item
-        android:id="@+id/nav_poner_anuncio"
-        android:icon="@drawable/ic_menu_send"
-        android:title="Poner un anuncio" />
-    <item
         android:id="@+id/nav_mis_anuncios"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_home"
         android:title="Mis anuncios" />
     <item
-        android:id="@+id/nav_mapa"
-        android:icon="@android:drawable/ic_dialog_map"
-        android:title="Mapa" />
-    <item
         android:id="@+id/nav_login"
-        android:icon="@android:drawable/ic_lock_power_off"
+        android:icon="@drawable/ic_open"
         android:title="Iniciar sesión" />
     <item
         android:id="@+id/nav_logout"

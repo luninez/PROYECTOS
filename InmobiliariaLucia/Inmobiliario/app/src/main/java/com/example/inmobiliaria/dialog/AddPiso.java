@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.inmobiliaria.R;
-import com.example.inmobiliaria.models.Piso;
+import com.example.inmobiliaria.models.Property;
 import com.example.inmobiliaria.viewModel.AddPisoViewModel;
 
 public class AddPiso extends DialogFragment {
@@ -43,7 +43,17 @@ public class AddPiso extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         view = inflater.inflate(R.layout.add_piso_fragment, null);
 
-        //Asociar los editText
+        title = view.findViewById(R.id.piso_add_title);
+        description = view.findViewById(R.id.piso_add_description);
+        price = view.findViewById(R.id.piso_add_price);
+        rooms = view.findViewById(R.id.piso_add_rooms);
+        size = view.findViewById(R.id.piso_add_size);
+        categoryID = view.findViewById(R.id.piso_add_spinner_category);
+        address = view.findViewById(R.id.piso_add_address);
+        zipCode = view.findViewById(R.id.piso_add_zipCode);
+        city = view.findViewById(R.id.piso_add_city);
+        province = view.findViewById(R.id.piso_add_province);
+        loc = view.findViewById(R.id.piso_add_loc);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -51,9 +61,20 @@ public class AddPiso extends DialogFragment {
                 .setPositiveButton("Añadir", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int id) {
+                        String titleAdd = title.getText().toString();
+                        String descriptionAdd = description.getText().toString();
+                        int priceAdd = Integer.parseInt(price.getText().toString());
+                        int roomsAdd = Integer.parseInt(rooms.getText().toString());
+                        int sizeAdd = Integer.parseInt(size.getText().toString());
+                        String categoryAdd = categoryID.getText().toString();
+                        String addressAdd = address.getText().toString();
+                        String zipCodeAdd = zipCode.getText().toString();
+                        String cityAdd = city.getText().toString();
+                        String provinceAdd = province.getText().toString();
+                        String locAdd = loc.getText().toString();
 
-                        Piso piso = new Piso();
-                        mViewModel.addPiso(piso, dialog);
+                        Property property = new Property(titleAdd, descriptionAdd, priceAdd, roomsAdd, sizeAdd, categoryAdd, addressAdd, zipCodeAdd, provinceAdd, cityAdd, locAdd);
+                        mViewModel.addPiso(property, dialog);
 
                     }
                 })

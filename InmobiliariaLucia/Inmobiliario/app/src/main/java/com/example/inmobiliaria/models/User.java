@@ -1,5 +1,6 @@
 package com.example.inmobiliaria.models;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class User {
@@ -10,16 +11,18 @@ public class User {
     private String name;
     private String role;
     private String picture;
+    private ArrayList<Property> array_favs;
 
     public User() { }
 
-    public User(String id, String email, String password, String name, String role, String picture) {
+    public User(String id, String email, String password, String name, String role, String picture, ArrayList<Property> array_favs) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
         this.role = role;
         this.picture = picture;
+        this.array_favs = array_favs;
     }
 
     public String getId() {
@@ -70,6 +73,14 @@ public class User {
         this.picture = picture;
     }
 
+    public ArrayList<Property> getArray_favs() {
+        return array_favs;
+    }
+
+    public void setArray_favs(ArrayList<Property> array_favs) {
+        this.array_favs = array_favs;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,12 +91,13 @@ public class User {
                 Objects.equals(password, user.password) &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(role, user.role) &&
-                Objects.equals(picture, user.picture);
+                Objects.equals(picture, user.picture) &&
+                Objects.equals(array_favs, user.array_favs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password, name, role, picture);
+        return Objects.hash(id, email, password, name, role, picture, array_favs);
     }
 
     @Override
@@ -97,6 +109,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", role='" + role + '\'' +
                 ", picture='" + picture + '\'' +
+                ", pisos_favs='" + array_favs + '\'' +
                 '}';
     }
 }

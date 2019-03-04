@@ -1,6 +1,6 @@
-package com.example.inmobiliaria.Funcionalidades.Responses;
+package com.example.inmobiliaria.Retrofit.Responses;
 
-import com.example.inmobiliaria.models.Piso;
+import com.example.inmobiliaria.models.Property;
 
 import java.util.List;
 
@@ -12,12 +12,12 @@ public class UserResponse {
     private String name;
     private String role;
     private String picture;
-    private List<Piso> pisosFavoritos;
-    private List<Piso> pisosAnuncios;
+    private List<Property> pisosFavoritos;
+    private List<Property> pisosAnuncios;
 
     public UserResponse() { }
 
-    public UserResponse(String id, String email, String password, String name, String role, String picture, List<Piso> pisosFavoritos, List<Piso> pisosAnuncios) {
+    public UserResponse(String id, String email, String password, String name, String role, String picture, List<Property> pisosFavoritos, List<Property> pisosAnuncios) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -76,19 +76,19 @@ public class UserResponse {
         this.picture = picture;
     }
 
-    public List<Piso> getPisosFavoritos() {
+    public List<Property> getPisosFavoritos() {
         return pisosFavoritos;
     }
 
-    public void setPisosFavoritos(List<Piso> pisosFavoritos) {
+    public void setPisosFavoritos(List<Property> pisosFavoritos) {
         this.pisosFavoritos = pisosFavoritos;
     }
 
-    public List<Piso> getPisosAnuncios() {
+    public List<Property> getPisosAnuncios() {
         return pisosAnuncios;
     }
 
-    public void setPisosAnuncios(List<Piso> pisosAnuncios) {
+    public void setPisosAnuncios(List<Property> pisosAnuncios) {
         this.pisosAnuncios = pisosAnuncios;
     }
 

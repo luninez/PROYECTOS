@@ -8,22 +8,16 @@
     android:background="#ffff"
     tools:context=".activity.RegistroActivity">
 
-    <Button
-        android:id="@+id/btnRegidtroLogin"
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
-        android:padding="10dp"
-        android:text="LOGIN"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="253dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/nombreRegistro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordRegsitro"
-        tools:layout_width="0dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic[15]" />
 
     <EditText
         android:id="@+id/nombreRegistro"

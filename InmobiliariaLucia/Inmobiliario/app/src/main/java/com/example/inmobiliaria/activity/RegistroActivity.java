@@ -13,10 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.inmobiliaria.Funcionalidades.Generator.ServiceGenerator;
-import com.example.inmobiliaria.Funcionalidades.Responses.AuthoRegisterResponse;
-import com.example.inmobiliaria.Funcionalidades.Services.AuthoRegisterService;
-import com.example.inmobiliaria.Funcionalidades.Util;
+import com.example.inmobiliaria.Retrofit.Generator.ServiceGenerator;
+import com.example.inmobiliaria.Retrofit.Responses.AuthoRegisterResponse;
+import com.example.inmobiliaria.Retrofit.Services.AuthoRegisterService;
+import com.example.inmobiliaria.Retrofit.Util;
 import com.example.inmobiliaria.R;
 import com.example.inmobiliaria.models.Register;
 
@@ -41,14 +41,6 @@ public class RegistroActivity extends AppCompatActivity {
         contrasenia = findViewById(R.id.passwordRegsitro);
 
         btnRegistro = findViewById(R.id.btnRegistro);
-        btnLogin = findViewById(R.id.btnRegidtroLogin);
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RegistroActivity.this, LoginActivity.class));
-            }
-        });
 
         doRegister();
     }
