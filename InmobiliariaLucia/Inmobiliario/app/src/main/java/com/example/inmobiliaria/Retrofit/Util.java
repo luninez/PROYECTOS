@@ -2,6 +2,7 @@ package com.example.inmobiliaria.Retrofit;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.constraint.ConstraintLayout;
 
 import com.example.inmobiliaria.models.User;
 
@@ -20,17 +21,17 @@ public class Util {
     }
 
     public static String getToken(Context ctx){
-        SharedPreferences prefs = ctx.getSharedPreferences("MisPrefenecias", Context.MODE_PRIVATE);
+        SharedPreferences prefs = ctx.getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
         return prefs.getString("token", null);
     }
 
     public static String getUser(Context ctx){
-        SharedPreferences prefs = ctx.getSharedPreferences("MisPrefenecias", Context.MODE_PRIVATE);
+        SharedPreferences prefs = ctx.getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
         return prefs.getString("user", null);
     }
 
     public static String getUserId(Context ctx){
-        SharedPreferences prefs = ctx.getSharedPreferences("MisPrefenecias", Context.MODE_PRIVATE);
+        SharedPreferences prefs = ctx.getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
         return prefs.getString("idUser", null);
     }
 

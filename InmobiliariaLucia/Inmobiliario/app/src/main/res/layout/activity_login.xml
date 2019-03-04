@@ -11,6 +11,7 @@
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="253dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/emailLogin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,15 +24,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:text="juanma@juanma.com"
+        android:text="lucia2@lucia.com"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="334dp" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/passwordLogin"
@@ -43,7 +45,7 @@
         android:ems="10"
         android:hint="Contraseña"
         android:inputType="textPassword"
-        android:text="juanma1234"
+        android:text="123456"
         app:layout_constraintBottom_toTopOf="@+id/olvidarPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

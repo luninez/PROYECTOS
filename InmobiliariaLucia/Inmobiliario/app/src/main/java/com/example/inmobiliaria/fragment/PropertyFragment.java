@@ -136,8 +136,8 @@ public class PropertyFragment extends Fragment {
     }
 
     public void cargarPisosFavoritos(final RecyclerView recyclerView) {
-        PropertyService propertyService = ServiceGenerator.createService(PropertyService.class, Util.getToken(this.getActivity()), TipoAutenticacion.JWT);
-        Call<ResponseContainer<Property>> call = propertyService.listProperties(options);
+        PropertyService propertyService = ServiceGenerator.createService(PropertyService.class, Util.getToken(getActivity()), TipoAutenticacion.JWT);
+        Call<ResponseContainer<Property>> call = propertyService.getFavs();
 
         call.enqueue(new Callback<ResponseContainer<Property>>() {
             @Override
@@ -159,7 +159,7 @@ public class PropertyFragment extends Fragment {
 
     public void cargarMisPisosAnunciados(final RecyclerView recyclerView) {
         PropertyService propertyService = ServiceGenerator.createService(PropertyService.class, Util.getToken(this.getActivity()), TipoAutenticacion.JWT);
-        Call<ResponseContainer<Property>> call = propertyService.listProperties(options);
+        Call<ResponseContainer<Property>> call = propertyService.listPropertiesAuth(options);
 
         call.enqueue(new Callback<ResponseContainer<Property>>() {
             @Override

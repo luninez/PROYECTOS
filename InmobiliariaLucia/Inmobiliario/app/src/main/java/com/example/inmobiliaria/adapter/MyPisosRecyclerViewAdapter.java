@@ -2,6 +2,7 @@ package com.example.inmobiliaria.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.AlertDialogLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.inmobiliaria.R;
 import com.example.inmobiliaria.Retrofit.Util;
+import com.example.inmobiliaria.activity.DashboardActivity;
 import com.example.inmobiliaria.fragment.PropertyFragment;
 import com.example.inmobiliaria.lisener.OnListPisosInteractionListener;
 import com.example.inmobiliaria.models.Property;
@@ -65,15 +67,6 @@ public class MyPisosRecyclerViewAdapter extends RecyclerView.Adapter<MyPisosRecy
                     AlertDialog.Builder  builder = new AlertDialog.Builder(ctx);
                     builder.setTitle("Error").setMessage("Debe estar logueado");
                 }
-            }
-        });
-
-        //Click llamar
-        holder.btnCall.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ctx, "En proceso pues no existe contancto", Toast.LENGTH_LONG).show();
-                mListener.onCallPisoClick(holder.mItem);
             }
         });
 

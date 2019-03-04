@@ -19,13 +19,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.inmobiliaria.Retrofit.Util;
 import com.example.inmobiliaria.R;
 import com.example.inmobiliaria.dialog.AddPiso;
+import com.example.inmobiliaria.dialog.DeletePiso;
+import com.example.inmobiliaria.dialog.EditPiso;
 import com.example.inmobiliaria.fragment.PropertyFragment;
 import com.example.inmobiliaria.lisener.OnListPisosInteractionListener;
 import com.example.inmobiliaria.models.Property;
@@ -76,7 +77,7 @@ public class DashboardActivity extends AppCompatActivity
         });
 
         navigationView.setNavigationItemSelectedListener(this);
-        ocultarItemMenu();
+        // ocultarItemMenu();
         mostrarInfoUsuarioMenu();
     }
 
@@ -86,7 +87,9 @@ public class DashboardActivity extends AppCompatActivity
             items.findItem(R.id.nav_pisos_favoritos).setVisible(false);
             items.findItem(R.id.nav_mis_anuncios).setVisible(false);
             items.findItem(R.id.nav_logout).setVisible(false);
-            items.findItem(R.id.nav_perfil).setVisible(false);
+
+            //////////////////////////NO ENTRA EN ELSE Y NO TENGO NI ZORRA DE PORQUE /////////////////////////////////
+
         } else {
             items.findItem(R.id.nav_login).setVisible(false);
         }
@@ -154,18 +157,13 @@ public class DashboardActivity extends AppCompatActivity
         int id = item.getItemId();
         f = null;
 
-        if (id == R.id.nav_perfil) {
-
-            fab.hide();
-            toolbar.setTitle("Perfil");
-            startActivity(new Intent(DashboardActivity.this, InfoPerfilActivity.class));
-            finish();
-
-        } else if (id == R.id.nav_login) {
+        if (id == R.id.nav_login) {
 
             fab.hide();
             toolbar.setTitle("Iniciar Sesión");
-            startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
+
+            Intent i = new Intent(DashboardActivity.this, LoginActivity.class);
+            startActivity(i);
             finish();
 
         } else if (id == R.id.nav_logout) {
@@ -177,7 +175,13 @@ public class DashboardActivity extends AppCompatActivity
 
         } else {
             f = new PropertyFragment();
-            ((PropertyFragment) f).setTipoPeticion(id);
+            if (Util.getToken(DashboardActivity.this) != null){
+                fab.show();
+                ((PropertyFragment) f).setTipoPeticion(id);
+            }else{
+                fab.hide();
+                ((PropertyFragment) f).setTipoPeticion(id);
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -201,16 +205,32 @@ public class DashboardActivity extends AppCompatActivity
     @Override
     public void onCallPisoClick(Property p) {
 
+
+
     }
 
     @Override
     public void onInfoPisoClick(Property p) {
-
+        Intent i = new Intent(DashboardActivity.this, InfoPisoScrollingActivity.class);
+        startActivity(i);
+        finish();
     }
 
     @Override
     public void onEditPisoClick(Property p) {
-
+        EditPiso f = EditPiso.newInstance().newInstance(p);
+        f.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Fragment currentFragment = getSupportFragmentManager().findFragmentByTag("mainFragment");
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.detach(currentFragment);
+                fragmentTransaction.attach(currentFragment);
+                fragmentTransaction.commit();
+            }
+        });
+        FragmentManager fm = getSupportFragmentManager();
+        f.show(fm, "EditarPiso");
     }
 
     @Override
@@ -227,11 +247,23 @@ public class DashboardActivity extends AppCompatActivity
             }
         });
         FragmentManager fm = getSupportFragmentManager();
-        f.show(fm, "AñadirPersona");
+        f.show(fm, "AnadirPiso");
     }
 
     @Override
     public void onDeletePisoClick(Property p) {
-
+        DeletePiso f = DeletePiso.newInstance().newInstance();
+        f.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Fragment currentFragment = getSupportFragmentManager().findFragmentByTag("mainFragment");
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.detach(currentFragment);
+                fragmentTransaction.attach(currentFragment);
+                fragmentTransaction.commit();
+            }
+        });
+        FragmentManager fm = getSupportFragmentManager();
+        f.show(fm, "DeletePiso");
     }
 }
